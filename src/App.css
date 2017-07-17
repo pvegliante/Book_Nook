@@ -1,0 +1,44 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #310C53;
+  height: 150px;
+  padding: 20px;
+  color: white;
+  font-size: 30px;
+  text-shadow: 1px 4px 1px black;
+}
+
+.App-header p {
+  font-size: 20px;
+  text-shadow: none;
+}
+
+.box {
+  margin: 10px;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-bottom: solid;
+}
+.click {
+  border-radius: 3px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: .1s ease-in-out;
+}
+
+.click:hover {
+  background-color: #310C53;
+  color: white;
+}
+
+.page {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
