@@ -1,5 +1,10 @@
 .App {
   text-align: center;
+  margin-bottom: 10px;
+}
+
+a {
+  text-decoration: none;
 }
 
 .App-header {
@@ -25,6 +30,7 @@
 }
 .click {
   border-radius: 3px;
+  width: 80px;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -37,8 +43,31 @@
   color: white;
 }
 
-.page {
+.interactions {
   display: flex;
-  flex-wrap: wrap;
   flex-direction: column;
+}
+
+.table {
+  display: flex;
+  justify-content: center;
+}
+
+.thumbnail {
+  display: flex;
+  justify-content: center;
+  background-color: #BADA55;
+}
+
+.thumbnail:hover .backside{
+  transition: .5s ease-in-out;
+  transform: translateY(-50px);
+  display: contents;
+}
+
+.backside {
+  border: 1px solid red;
+  /*color: white;*/
+  font-weight: bold;
+  /*display: none;*/
 }

@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import data from './data.json';
+import Parser from 'html-react-parser';
 
-const Search = ({value, onChange, onSubmit, children}) =>
+const DEFAULT_QUERY = 'redux';
+const DEFAULT_RESULTS = 5;
+
+const PATH_BASE = 'https://www.googleapis.com/books/v1';
+const PATH_SEARCH = '/volumes';
+const PARAM_SEARCH = 'q=';
+const PARAM_RESULTS = 'maxResults=';
+
+const Search = ({onChange, onSubmit, children}) =>
   <form onSubmit={onSubmit}>
-    {children}
-    <input type="text" className="box" value={value} onChange= {onChange}/>
+    <input type="text" className="box" onChange= {onChange}/>
     <button className="click" type="submit">
       {children}
     </button>
@@ -17,10 +24,47 @@ class App extends Component {
     super(props);
 
     this.state = {
-      data,
-    };
+      data:null,
+      searchTerm: DEFAULT_QUERY
+    }
+    this.setBooks=this.setBooks.bind(this);
+    this.fetchBooks=this.fetchBooks.bind(this);
+    this.onSearchChange=this.onSearchChange.bind(this);
+    this.onSearchSubmit=this.onSearchSubmit.bind(this);
   }
+
+  setBooks(data) {
+    this.setState({data})
+  }
+
+  fetchBooks(searchTerm){
+      fetch(`${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_RESULTS}${DEFAULT_RESULTS}`)
+      .then( response => response.json())
+      .then(result => this.setBooks(result))
+      .catch(e=>e);
+  }
+
+  componentDidMount(){
+    const {searchTerm}=this.state;
+    this.fetchBooks(searchTerm);
+  }
+
+  onSearchSubmit(e){
+    const {searchTerm}=this.state;
+    this.fetchBooks(searchTerm);
+    e.preventDefault();
+  }
+
+  onSearchChange(e){
+    this.setState({searchTerm:e.target.value})
+  }
+
   render() {
+    const {data}=this.state;
+    if(!data){
+      return null;
+    }
+    console.log(data);
     return (
       <div className="App">
         <div className="App-header">
@@ -30,18 +74,21 @@ class App extends Component {
         <h2>What book are you looking for?</h2>
         <div className="page">
           <div className="interactions">
-            <Search>
-              Search
-            </Search>
+            <Search
+              onChange={this.onSearchChange}
+              onSubmit={this.onSearchSubmit}
+              >
+                Search
+              </Search>
           </div>
           {this.state.data.items.map(item =>
             <div className="table" key={item.id}>
               <div>
-                <span><h3>{item.volumeInfo.title}</h3></span>
+                <span><h2>{item.volumeInfo.title}</h2></span>
                 <div className="thumbnail">
-                  {item.volumeInfo.imageLinks.smallThumbnail}
+                  <img src={item.volumeInfo.imageLinks.thumbnail}/>
                 </div>
-                <a href=""><div className="backside">
+                <a href={item.volumeInfo.previewLink}><div className="backside">
                 <span><h6>{item.volumeInfo.subtitle}</h6></span>
                 <span><h6>{item.volumeInfo.categories}</h6></span>
                 <span>
