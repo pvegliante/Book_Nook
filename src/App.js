@@ -3,8 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import Parser from 'html-react-parser';
 
-const DEFAULT_QUERY = 'redux';
-const DEFAULT_RESULTS = 5;
+const DEFAULT_QUERY = 'motorcycles';
+const DEFAULT_RESULTS = 20;
 
 const PATH_BASE = 'https://www.googleapis.com/books/v1';
 const PATH_SEARCH = '/volumes';
@@ -68,7 +68,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <h1>Welcome to Book Nook</h1>
+          <h1>The Angolo</h1>
           <p>Find the books you have always been looking for</p>
         </div>
         <h2>What book are you looking for?</h2>
@@ -81,25 +81,25 @@ class App extends Component {
                 Search
               </Search>
           </div>
-          {this.state.data.items.map(item =>
+          <div className="samwich">{this.state.data.items.map(item =>
             <div className="table" key={item.id}>
               <div>
-                <span><h2>{item.volumeInfo.title}</h2></span>
-                <div className="thumbnail">
-                  <img src={item.volumeInfo.imageLinks.thumbnail}/>
-                </div>
-                <a href={item.volumeInfo.previewLink}><div className="backside">
-                <span><h6>{item.volumeInfo.subtitle}</h6></span>
-                <span><h6>{item.volumeInfo.categories}</h6></span>
-                <span>
-                      <h6>{item.volumeInfo.authors[0]}</h6>
-                      <h6>{item.volumeInfo.authors[1]}</h6>
-                </span>
-                <span><h6>{item.volumeInfo.averageRating}</h6></span>
+                <span><h2>{item.volumeInfo.title ? item.volumeInfo.title: 'Not Available'}</h2></span>
+                <a target="_blank" rel="noopener" href={item.volumeInfo.previewLink ? item.volumeInfo.previewLink: ''}><div className="thumbnail">
+                  <img src={ item.volumeInfo.imageLinks  ?  item.volumeInfo.imageLinks.thumbnail: item.volumeInfo.title}/>
+                  <a target="_blank" rel="noopener" className="backside" href={item.volumeInfo.previewLink ? item.volumeInfo.previewLink: ''}>
+                  <span><h6>{item.volumeInfo.subtitle ? item.volumeInfo.subtitle: 'Not Available'}</h6></span>
+                  <span><h6>{item.volumeInfo.categories ? item.volumeInfo.categories: 'Not Available'}</h6></span>
+                  <span>
+                        {item.volumeInfo.authors ? item.volumeInfo.authors.map(author =>
+                            <h6 key={author}>{ author }</h6>
+                        ): 'Not Available'}
+                  </span>
+                  </a>
                 </div></a>
               </div>
             </div>
-          )}
+          )}</div>
         </div>
       </div>
     );

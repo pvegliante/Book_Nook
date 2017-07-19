@@ -1,6 +1,15 @@
 .App {
   text-align: center;
-  margin-bottom: 10px;
+  margin: 20px;
+}
+
+* {
+  font-family: 'Simonetta', cursive;
+}
+
+body {
+  background: linear-gradient(135deg, rgba(252,249,218,1) 0%, rgba(255,230,189,1) 100%);
+  overflow: scroll;
 }
 
 a {
@@ -8,26 +17,44 @@ a {
 }
 
 .App-header {
-  background-color: #310C53;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(to bottom, rgba(143,4,4,1) 0%, rgba(119,4,4,1) 44%, rgba(90,1,1,1) 75%, rgba(90,1,1,1) 100%);
   height: 150px;
   padding: 20px;
   color: white;
   font-size: 30px;
-  text-shadow: 1px 4px 1px black;
+  text-shadow: 1px 4px 1px rgba(10,10,10,.8);
+}
+
+.App-header h1 {
+  font-family: 'Simonetta', cursive;
+  font-size: 100px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .App-header p {
   font-size: 20px;
   text-shadow: none;
+  margin-top: 0;
 }
 
 .box {
+  text-decoration: none;
   margin: 10px;
   border-top: none;
   border-right: none;
   border-left: none;
   border-bottom: solid;
+  background-color: rgba(252,249,218,1);
+  padding-right: 50px;
 }
+
+.box:focus {
+  outline-color: rgba(90,1,1,1);
+}
+
 .click {
   border-radius: 3px;
   width: 80px;
@@ -39,8 +66,12 @@ a {
 }
 
 .click:hover {
-  background-color: #310C53;
+  background-color: rgba(143,4,4,1);
   color: white;
+}
+
+.click:focus {
+  outline: none;
 }
 
 .interactions {
@@ -49,25 +80,59 @@ a {
 }
 
 .table {
+  display: block;
+  width: 200px;
+  padding: 30px;
+  align-items: center;
+  position: relative;
+}
+
+.table h2 {
+  text-shadow: 1px 1px 1px white;
+}
+
+.samwich {
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .thumbnail {
-  display: flex;
   justify-content: center;
   background-color: #BADA55;
+  position: relative;
+  display: block;
+  border: 1px solid lightgray;
+  box-shadow: 0px 5px 10px rgba(10,10,10,.8);
+}
+
+.thumbnail img {
+  width: 100%;
+  display: block;
+  position: relative;
 }
 
 .thumbnail:hover .backside{
-  transition: .5s ease-in-out;
-  transform: translateY(-50px);
-  display: contents;
+  transition: .3s ease-in-out;
+  transform: translateY(0);
+  opacity: 1;
+  z-index: 1;
 }
 
 .backside {
-  border: 1px solid red;
-  /*color: white;*/
+  background-color: rgba(50,50,50, .8);
+  border: 1px solid #BADA55;
+  color: white;
   font-weight: bold;
-  /*display: none;*/
+  font-size: 23px;
+  line-height: 10px;
+  opacity: 0;
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transform: translateY(100%);
+  z-index: -100;
 }
