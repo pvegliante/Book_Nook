@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Parser from 'html-react-parser';
+import dummy from './bookplaceholder.jpg';
 
-const DEFAULT_QUERY = 'motorcycles';
+const DEFAULT_QUERY = 'valentino';
 const DEFAULT_RESULTS = 20;
 
 const PATH_BASE = 'https://www.googleapis.com/books/v1';
@@ -85,8 +86,8 @@ class App extends Component {
             <div className="table" key={item.id}>
               <div>
                 <span><h2>{item.volumeInfo.title ? item.volumeInfo.title: 'Not Available'}</h2></span>
-                <a target="_blank" rel="noopener" href={item.volumeInfo.previewLink ? item.volumeInfo.previewLink: ''}><div className="thumbnail">
-                  <img src={ item.volumeInfo.imageLinks  ?  item.volumeInfo.imageLinks.thumbnail: item.volumeInfo.title}/>
+                <div className="thumbnail"><a target="_blank" rel="noopener" href={item.volumeInfo.previewLink ? item.volumeInfo.previewLink: ''}>
+                  <img src={item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.thumbnail !== 'http://books.google.com/books/content?id=fOK5wjMIHh0C&printsec=frontcover&img=1&zoom=1&source=gbs_api' ? item.volumeInfo.imageLinks.thumbnail: dummy}/>
                   <a target="_blank" rel="noopener" className="backside" href={item.volumeInfo.previewLink ? item.volumeInfo.previewLink: ''}>
                   <span><h6>{item.volumeInfo.subtitle ? item.volumeInfo.subtitle: 'Not Available'}</h6></span>
                   <span><h6>{item.volumeInfo.categories ? item.volumeInfo.categories: 'Not Available'}</h6></span>
@@ -96,7 +97,7 @@ class App extends Component {
                         ): 'Not Available'}
                   </span>
                   </a>
-                </div></a>
+                </a></div>
               </div>
             </div>
           )}</div>

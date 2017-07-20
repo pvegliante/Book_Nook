@@ -41,6 +41,11 @@ a {
 }
 
 .box {
+  padding: 0px 5px 0px 5px;
+  letter-spacing: 2px;
+  font-size: 20px;
+  font-weight: 800;
+  height: 30px;
   text-decoration: none;
   margin: 10px;
   border-top: none;
@@ -48,7 +53,6 @@ a {
   border-left: none;
   border-bottom: solid;
   background-color: rgba(252,249,218,1);
-  padding-right: 50px;
 }
 
 .box:focus {
@@ -56,6 +60,9 @@ a {
 }
 
 .click {
+  font-size: 15px;
+  font-weight: bolder;
+  letter-spacing: 2px;
   border-radius: 3px;
   width: 80px;
   background: transparent;
@@ -125,7 +132,6 @@ a {
   color: white;
   font-weight: bold;
   font-size: 23px;
-  line-height: 10px;
   opacity: 0;
   display: block;
   position: absolute;
@@ -135,4 +141,12 @@ a {
   left: 0;
   transform: translateY(100%);
   z-index: -100;
+}
+
+.backside h6 {
+  display: flex;
+  justify-content: center;
+  line-height: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
