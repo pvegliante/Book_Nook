@@ -28,16 +28,21 @@ a {
 }
 
 .App-header h1 {
+  display: flex;
+  justify-content: center;
   font-family: 'Simonetta', cursive;
-  font-size: 100px;
+  font-size: 7.5vw;
   margin: 0 auto;
   width: 100%;
 }
 
 .App-header p {
-  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  padding-top: 100px;
+  font-size: 2vw;
   text-shadow: none;
-  margin-top: 0;
+  margin-top: 20px;
 }
 
 .box {
@@ -59,7 +64,8 @@ a {
   outline-color: rgba(90,1,1,1);
 }
 
-.click {
+.click,
+.next {
   font-size: 15px;
   font-weight: bolder;
   letter-spacing: 2px;
@@ -72,12 +78,14 @@ a {
   transition: .1s ease-in-out;
 }
 
-.click:hover {
+.click:hover,
+.next:hover {
   background-color: rgba(143,4,4,1);
   color: white;
 }
 
-.click:focus {
+.click:focus,
+.next:focus {
   outline: none;
 }
 
@@ -149,4 +157,13 @@ a {
   line-height: 20px;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+}
+
+.bye{
+  display: none;
 }
