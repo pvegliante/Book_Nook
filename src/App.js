@@ -91,8 +91,11 @@ class App extends Component {
   }
 
   onSearchSubmit(e){
-    const {searchTerm}=this.state;
-    this.fetchBooks(searchTerm);
+    const { searchTerm }=this.state;
+    this.setState({ currentIndex: 0},
+    function resetIndex() {
+      this.fetchBooks(this.state.searchTerm, this.state.currentIndex);
+    });
     e.preventDefault();
   }
 
